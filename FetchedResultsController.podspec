@@ -20,6 +20,6 @@ Pod::Spec.new do |s|
 	
   s.requires_arc = true
 	
-  s.frameworks = 'UIKit'
+  s.frameworks = 'UIKit', 'CoreData'
   
 end
