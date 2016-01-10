@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Boles. All rights reserved.
 //
 
-#import "CDSCollectionViewFetchedResultsController.h"
+#import "FRCCollectionViewFetchedResultsController.h"
 
-@interface CDSCollectionViewFetchedResultsController ()
+@interface FRCCollectionViewFetchedResultsController ()
 
 @property (nonatomic, strong) NSDictionary *objectChanges;
 @property (nonatomic, strong) NSDictionary *sectionChanges;
@@ -25,7 +25,7 @@
 
 @end
 
-@implementation CDSCollectionViewFetchedResultsController
+@implementation FRCCollectionViewFetchedResultsController
 
 #pragma mark - Init
 

@@ -1,21 +1,21 @@
 //
-//  CDSTableViewFetchedResultsController.m
+//  FRCTableViewFetchedResultsController.m
 //  Boles
 //
 //  Created by William Boles on 29/01/2015.
 //  Copyright (c) 2015 Boles. All rights reserved.
 //
 
-#import "CDSTableViewFetchedResultsController.h"
+#import "FRCTableViewFetchedResultsController.h"
 
-@interface CDSTableViewFetchedResultsController ()
+@interface FRCTableViewFetchedResultsController ()
 
 @property (nonatomic, strong) NSMutableArray *insertedIndexPaths;
 @property (nonatomic, strong) NSMutableArray *updatedIndexPaths;
 
 @end
 
-@implementation CDSTableViewFetchedResultsController
+@implementation FRCTableViewFetchedResultsController
 
 #pragma mark - Init
 

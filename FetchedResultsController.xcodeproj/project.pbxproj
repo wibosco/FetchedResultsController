@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		437A770D1C4266C300AD92C1 /* CDSCollectionViewFetchedResultsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 437A77091C4266C300AD92C1 /* CDSCollectionViewFetchedResultsController.m */; };
-		437A770E1C4266C300AD92C1 /* CDSTableViewFetchedResultsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 437A770C1C4266C300AD92C1 /* CDSTableViewFetchedResultsController.m */; };
+		437A770D1C4266C300AD92C1 /* FRCCollectionViewFetchedResultsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 437A77091C4266C300AD92C1 /* FRCCollectionViewFetchedResultsController.m */; };
+		437A770E1C4266C300AD92C1 /* FRCTableViewFetchedResultsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 437A770C1C4266C300AD92C1 /* FRCTableViewFetchedResultsController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,10 +24,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		437A77081C4266C300AD92C1 /* CDSCollectionViewFetchedResultsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDSCollectionViewFetchedResultsController.h; sourceTree = "<group>"; };
-		437A77091C4266C300AD92C1 /* CDSCollectionViewFetchedResultsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDSCollectionViewFetchedResultsController.m; sourceTree = "<group>"; };
-		437A770B1C4266C300AD92C1 /* CDSTableViewFetchedResultsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDSTableViewFetchedResultsController.h; sourceTree = "<group>"; };
-		437A770C1C4266C300AD92C1 /* CDSTableViewFetchedResultsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDSTableViewFetchedResultsController.m; sourceTree = "<group>"; };
+		437A77081C4266C300AD92C1 /* FRCCollectionViewFetchedResultsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FRCCollectionViewFetchedResultsController.h; sourceTree = "<group>"; };
+		437A77091C4266C300AD92C1 /* FRCCollectionViewFetchedResultsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FRCCollectionViewFetchedResultsController.m; sourceTree = "<group>"; };
+		437A770B1C4266C300AD92C1 /* FRCTableViewFetchedResultsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FRCTableViewFetchedResultsController.h; sourceTree = "<group>"; };
+		437A770C1C4266C300AD92C1 /* FRCTableViewFetchedResultsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FRCTableViewFetchedResultsController.m; sourceTree = "<group>"; };
 		43D5C4C61C41E0030030993D /* libFetchedResultsController.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFetchedResultsController.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -45,8 +45,8 @@
 		437A77071C4266C300AD92C1 /* CollectionView */ = {
 			isa = PBXGroup;
 			children = (
-				437A77081C4266C300AD92C1 /* CDSCollectionViewFetchedResultsController.h */,
-				437A77091C4266C300AD92C1 /* CDSCollectionViewFetchedResultsController.m */,
+				437A77081C4266C300AD92C1 /* FRCCollectionViewFetchedResultsController.h */,
+				437A77091C4266C300AD92C1 /* FRCCollectionViewFetchedResultsController.m */,
 			);
 			path = CollectionView;
 			sourceTree = "<group>";
@@ -54,8 +54,8 @@
 		437A770A1C4266C300AD92C1 /* TableView */ = {
 			isa = PBXGroup;
 			children = (
-				437A770B1C4266C300AD92C1 /* CDSTableViewFetchedResultsController.h */,
-				437A770C1C4266C300AD92C1 /* CDSTableViewFetchedResultsController.m */,
+				437A770B1C4266C300AD92C1 /* FRCTableViewFetchedResultsController.h */,
+				437A770C1C4266C300AD92C1 /* FRCTableViewFetchedResultsController.m */,
 			);
 			path = TableView;
 			sourceTree = "<group>";
@@ -142,8 +142,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				437A770D1C4266C300AD92C1 /* CDSCollectionViewFetchedResultsController.m in Sources */,
-				437A770E1C4266C300AD92C1 /* CDSTableViewFetchedResultsController.m in Sources */,
+				437A770D1C4266C300AD92C1 /* FRCCollectionViewFetchedResultsController.m in Sources */,
+				437A770E1C4266C300AD92C1 /* FRCTableViewFetchedResultsController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

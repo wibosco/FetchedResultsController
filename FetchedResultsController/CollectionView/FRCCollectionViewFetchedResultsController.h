@@ -1,5 +1,5 @@
 //
-//  CDSCollectionViewFetchedResultsController.h
+//  FRCCollectionViewFetchedResultsController.h
 //  FetchedResultsController
 //
 //  Created by William Boles on on 21/05/2015.
@@ -10,9 +10,9 @@
 @import Foundation;
 @import UIKit;
 
-@class CDSCollectionViewFetchedResultsController;
+@class FRCCollectionViewFetchedResultsController;
 
-@protocol CDSCollectionViewFetchedResultsControllerDataDelegate <NSObject>
+@protocol FRCCollectionViewFetchedResultsControllerDataDelegate <NSObject>
 
 /**
  Informational call for when the FRC updates
@@ -21,7 +21,7 @@
 
 @end
 
-@interface CDSCollectionViewFetchedResultsController : NSFetchedResultsController<NSFetchedResultsControllerDelegate>
+@interface FRCCollectionViewFetchedResultsController : NSFetchedResultsController <NSFetchedResultsControllerDelegate>
 
 /**
  Collection view for the fetch result controller to update.
@@ -31,7 +31,7 @@
 /**
  Delegate for the fetch result controller updates.
  */
-@property (nonatomic, weak) id<CDSCollectionViewFetchedResultsControllerDataDelegate> dataDelegate;
+@property (nonatomic, weak) id<FRCCollectionViewFetchedResultsControllerDataDelegate> dataDelegate;
 
 /**
  This is the value to offset the section indexes by.

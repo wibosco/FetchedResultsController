@@ -1,5 +1,5 @@
 //
-//  CDSTableViewFetchedResultsController.h
+//  FRCTableViewFetchedResultsController.h
 //  FetchedResultsController
 //
 //  Created by William Boles on 29/01/2015.
@@ -10,7 +10,7 @@
 @import Foundation;
 @import UIKit;
 
-@protocol CDSTableViewFetchedResultsControllerDataDelegate <NSObject>
+@protocol FRCTableViewFetchedResultsControllerDataDelegate <NSObject>
 
 /**
  Informational call for when the FRC updates
@@ -35,7 +35,7 @@
 
 @end
 
-@interface CDSTableViewFetchedResultsController : NSFetchedResultsController<NSFetchedResultsControllerDelegate>
+@interface FRCTableViewFetchedResultsController : NSFetchedResultsController <NSFetchedResultsControllerDelegate>
 
 /**
  Specifies if the fetch result controller should update it's sections.
@@ -50,7 +50,7 @@
 /**
  Delegate for the fetch result controller updates.
  */
-@property (atomic, weak) id<CDSTableViewFetchedResultsControllerDataDelegate> dataDelegate;
+@property (atomic, weak) id<FRCTableViewFetchedResultsControllerDataDelegate> dataDelegate;
 
 /**
  This is the value to offset the section indexes by.
