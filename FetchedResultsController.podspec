@@ -15,7 +15,8 @@ Pod::Spec.new do |s|
   					 :branch => "master", 
   					 :tag => s.version }
 
-  s.source_files = 'Pod/Classes/**/*'
+  s.source_files  = "FetchedResultsController/**/*.{h,m}"
+  s.public_header_files = "FetchedResultsController/**/*.{h}"
 	
   s.requires_arc = true
 	
