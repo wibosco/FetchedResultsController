@@ -72,6 +72,8 @@ FetchedResultsController is a collection of subclasses of `NSFetchedResultsContr
 }
 ```
 
+FetchedResultsController comes with an [example project](https://github.com/wibosco/FetchedResultsController/tree/master/Example/iOS%20Example) to provide more details than listed above.
+
 FetchedResultsController uses [modules](http://useyourloaf.com/blog/modules-and-precompiled-headers.html) for importing/using frameworks - you will need to enable this in your project.
 
 ##Found an issue?
