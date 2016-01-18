@@ -31,6 +31,8 @@ FetchedResultsController is a collection of subclasses of `NSFetchedResultsContr
 
 ####Configuring 
 
+#####Tableview 
+
 ```objc
 - (FRCTableViewFetchedResultsController *)fetchedResultsController
 {
@@ -49,6 +51,7 @@ FetchedResultsController is a collection of subclasses of `NSFetchedResultsContr
     return _fetchedResultsController;
 }
 ```
+#####Collectionview 
 
 ```objc
 - (FRCCollectionViewFetchedResultsController *)fetchedResultsController
