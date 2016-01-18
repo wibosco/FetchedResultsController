@@ -1,35 +1,37 @@
 //
-//  FREUserTableViewCell.m
+//  FREUserCollectionViewCell.m
 //  iOSExample
 //
-//  Created by William Boles on 15/01/2016.
+//  Created by William Boles on 18/01/2016.
 //  Copyright © 2016 Boles. All rights reserved.
 //
 
-#import "FREUserTableViewCell.h"
+#import "FREUserCollectionViewCell.h"
 
 #import <PureLayout/PureLayout.h>
 
-static CGFloat const kFREPadding = 28.0f;
+static CGFloat const kFREPadding = 8.0f;
 
-@interface FREUserTableViewCell ()
+@interface FREUserCollectionViewCell ()
 
 @property (nonatomic, strong, readwrite) UILabel *nameLabel;
 @property (nonatomic, strong, readwrite) UILabel *ageLabel;
 
 @end
 
-@implementation FREUserTableViewCell
+@implementation FREUserCollectionViewCell
 
 #pragma mark - Init
 
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+- (instancetype)initWithFrame:(CGRect)frame
 {
-    self = [super initWithStyle:style
-                reuseIdentifier:reuseIdentifier];
+    self = [super initWithFrame:frame];
     
     if (self)
     {
+        self.layer.borderWidth = 1.0f;
+        self.layer.borderColor = [UIColor blueColor].CGColor;
+        
         [self.contentView addSubview:self.nameLabel];
         [self.contentView addSubview:self.ageLabel];
     }
@@ -115,5 +117,6 @@ static CGFloat const kFREPadding = 28.0f;
     [self setNeedsLayout];
     [self layoutIfNeeded];
 }
+
 
 @end

@@ -11,10 +11,15 @@
 #import <CoreDataServices/CDSServiceManager.h>
 
 #import "FRETableViewController.h"
+#import "FRECollectionViewController.h"
 
 @interface FREAppDelegate ()
 
-@property (nonatomic, strong) FRETableViewController *viewController;
+@property (nonatomic, strong) UINavigationController *tableNavigationController;
+@property (nonatomic, strong) UINavigationController *collectionNavigationController;
+
+@property (nonatomic, strong) FRETableViewController *tableViewController;
+@property (nonatomic, strong) FRECollectionViewController *collectionViewController;
 
 @end
 
@@ -50,7 +55,7 @@
     if (!_window)
     {
         _window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-        _window.rootViewController = self.navigationController;
+        _window.rootViewController = self.tabBarController;
     }
     
     return _window;
@@ -58,26 +63,71 @@
 
 #pragma mark - Navigation
 
-- (UINavigationController *)navigationController
+- (UITabBarController *)tabBarController
 {
-    if (!_navigationController)
+    if (!_tabBarController)
     {
-        _navigationController = [[UINavigationController alloc] initWithRootViewController:self.viewController];
+        _tabBarController = [[UITabBarController alloc] init];
+        
+        [_tabBarController addChildViewController:self.tableNavigationController];
+        [_tabBarController addChildViewController:self.collectionNavigationController];
     }
     
-    return _navigationController;
+    return _tabBarController;
+}
+
+- (UINavigationController *)tableNavigationController
+{
+    if (!_tableNavigationController)
+    {
+        _tableNavigationController = [[UINavigationController alloc] initWithRootViewController:self.tableViewController];
+        
+        UITabBarItem *tableNavigationControllerItem = [[UITabBarItem alloc] initWithTitle:@"Table"
+                                                                                    image:[UIImage imageNamed:@"first"]
+                                                                                      tag:0];
+        
+        [_tableNavigationController setTabBarItem:tableNavigationControllerItem];
+    }
+    
+    return _tableNavigationController;
+}
+
+- (UINavigationController *)collectionNavigationController
+{
+    if (!_collectionNavigationController)
+    {
+        _collectionNavigationController = [[UINavigationController alloc] initWithRootViewController:self.collectionViewController];
+        
+        UITabBarItem *collectionNavigationControllerItem = [[UITabBarItem alloc] initWithTitle:@"Collection"
+                                                                                         image:[UIImage imageNamed:@"second"]
+                                                                                           tag:1];
+        
+        [_collectionNavigationController setTabBarItem:collectionNavigationControllerItem];
+    }
+    
+    return _collectionNavigationController;
 }
 
 #pragma mark - ViewController
 
-- (FRETableViewController *)viewController
+- (FRETableViewController *)tableViewController
 {
-    if (!_viewController)
+    if (!_tableViewController)
     {
-        _viewController = [[FRETableViewController alloc] init];
+        _tableViewController = [[FRETableViewController alloc] init];
     }
     
-    return _viewController;
+    return _tableViewController;
+}
+
+- (FRECollectionViewController *)collectionViewController
+{
+    if (!_collectionViewController)
+    {
+        _collectionViewController = [[FRECollectionViewController alloc] init];
+    }
+    
+    return _collectionViewController;
 }
 
 @end

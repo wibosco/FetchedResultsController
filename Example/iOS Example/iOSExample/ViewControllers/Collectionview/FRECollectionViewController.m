@@ -1,29 +1,29 @@
 //
-//  FRETableViewController.m
+//  FRECollectionViewController.m
 //  iOSExample
 //
-//  Created by William Boles on 15/01/2016.
+//  Created by William Boles on 18/01/2016.
 //  Copyright © 2016 Boles. All rights reserved.
 //
 
-#import "FRETableViewController.h"
+#import "FRECollectionViewController.h"
 
 #import <CoreDataServices/CDSServiceManager.h>
 #import <CoreDataServices/NSManagedObjectContext+CDSRetrieval.h>
 #import <CoreDataServices/NSManagedObjectContext+CDSDelete.h>
 #import <CoreDataServices/NSEntityDescription+CDSEntityDescription.h>
-#import <FetchedResultsController/FRCTableViewFetchedResultsController.h>
+#import <FetchedResultsController/FRCCollectionViewFetchedResultsController.h>
 
+#import "FREUserCollectionViewCell.h"
 #import "FREUser.h"
-#import "FREUserTableViewCell.h"
 
-@interface FRETableViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface FRECollectionViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
-@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) UICollectionView *collectionView;
 
 @property (nonatomic, strong) UIBarButtonItem *insertUserBarButtonItem;
 
-@property (nonatomic, strong) FRCTableViewFetchedResultsController *fetchedResultsController;
+@property (nonatomic, strong) FRCCollectionViewFetchedResultsController *fetchedResultsController;
 
 @property (nonatomic, strong) NSFetchRequest *fetchRequest;
 
@@ -33,7 +33,7 @@
 
 @end
 
-@implementation FRETableViewController
+@implementation FRECollectionViewController
 
 #pragma mark - ViewLifecycle
 
@@ -43,7 +43,7 @@
     
     /*-------------------*/
     
-    self.title = @"Table";
+    self.title = @"Collection";
     
     /*-------------------*/
     
@@ -51,26 +51,36 @@
     
     /*-------------------*/
     
-    [self.view addSubview:self.tableView];
+    [self.view addSubview:self.collectionView];
 }
 
 #pragma mark - Subview
 
-- (UITableView *)tableView
+- (UICollectionView *)collectionView
 {
-    if (!_tableView)
+    if (!_collectionView)
     {
-        _tableView = [[UITableView alloc] initWithFrame:self.view.frame
-                                                  style:UITableViewStylePlain];
+        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+        layout.minimumInteritemSpacing = 2.0f;
+        layout.minimumLineSpacing = 4.0f;
+        layout.sectionInset = UIEdgeInsetsMake(4.0f,
+                                               0.0f,
+                                               4.0f,
+                                               0.0f);
         
-        _tableView.dataSource = self;
-        _tableView.delegate = self;
+        _collectionView = [[UICollectionView alloc] initWithFrame:self.view.frame
+                                             collectionViewLayout:layout];
         
-        [_tableView registerClass:[FREUserTableViewCell class]
-           forCellReuseIdentifier:[FREUserTableViewCell reuseIdentifier]];
+        _collectionView.backgroundColor = [UIColor whiteColor];
+        
+        _collectionView.dataSource = self;
+        _collectionView.delegate = self;
+        
+        [_collectionView registerClass:[FREUserCollectionViewCell class]
+            forCellWithReuseIdentifier:[FREUserCollectionViewCell reuseIdentifier]];
     }
     
-    return _tableView;
+    return _collectionView;
 }
 
 - (UIBarButtonItem *)insertUserBarButtonItem
@@ -87,16 +97,16 @@
 
 #pragma mark - Users
 
-- (FRCTableViewFetchedResultsController *)fetchedResultsController
+- (FRCCollectionViewFetchedResultsController *)fetchedResultsController
 {
     if (!_fetchedResultsController)
     {
-        _fetchedResultsController = [[FRCTableViewFetchedResultsController alloc] initWithFetchRequest:self.fetchRequest
+        _fetchedResultsController = [[FRCCollectionViewFetchedResultsController alloc] initWithFetchRequest:self.fetchRequest
                                                                                   managedObjectContext:[CDSServiceManager sharedInstance].managedObjectContext
                                                                                     sectionNameKeyPath:nil
                                                                                              cacheName:nil];
         
-        _fetchedResultsController.tableView = self.tableView;
+        _fetchedResultsController.collectionView = self.collectionView;
         
         [_fetchedResultsController performFetch:nil];
     }
@@ -125,17 +135,17 @@
     return @[ageSort];
 }
 
-#pragma mark - UITableViewDataSource
+#pragma mark - UICollectionViewDataSource
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     return self.fetchedResultsController.fetchedObjects.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    FREUserTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[FREUserTableViewCell reuseIdentifier]
-                                                                 forIndexPath:indexPath];
+    FREUserCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[FREUserCollectionViewCell reuseIdentifier]
+                                                                                forIndexPath:indexPath];
     
     FREUser *user = self.fetchedResultsController.fetchedObjects[indexPath.row];
     
@@ -147,9 +157,9 @@
     return cell;
 }
 
-#pragma mark - UITableViewDelegate
+#pragma mark - UICollectionViewDelegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     FREUser *user = self.fetchedResultsController.fetchedObjects[indexPath.row];
     
@@ -157,6 +167,14 @@
     
     [[CDSServiceManager sharedInstance].managedObjectContext cds_deleteEntriesForEntityClass:[FREUser class]
                                                                                    predicate:predicate];
+}
+
+#pragma mark - UICollectionViewDelegateFlowLayout
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return CGSizeMake(150.0f,
+                      150.0f);
 }
 
 #pragma mark - Insert
@@ -167,9 +185,9 @@
                                                        inManagedObjectContext:[CDSServiceManager sharedInstance].managedObjectContext];
     
     user.userID = [NSUUID UUID].UUIDString;
-    user.name = [NSString stringWithFormat:@"Table %@", @(self.fetchedResultsController.fetchedObjects.count)];
+    user.name = [NSString stringWithFormat:@"Collection %@", @(self.fetchedResultsController.fetchedObjects.count)];
     user.age = @(arc4random_uniform(102));
-
+    
     [[CDSServiceManager sharedInstance].managedObjectContext save:nil];
 }
 
