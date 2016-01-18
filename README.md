@@ -29,6 +29,7 @@ FetchedResultsController is a collection of subclasses of `NSFetchedResultsContr
 
 ####Configuring 
 
+```bash
 - (FRCTableViewFetchedResultsController *)fetchedResultsController
 {
     if (!_fetchedResultsController)
@@ -45,6 +46,7 @@ FetchedResultsController is a collection of subclasses of `NSFetchedResultsContr
     
     return _fetchedResultsController;
 }
+```
 
 FetchedResultsController uses [modules](http://useyourloaf.com/blog/modules-and-precompiled-headers.html) for importing/using frameworks - you will need to enable this in your project.
 
