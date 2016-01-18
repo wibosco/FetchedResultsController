@@ -31,7 +31,7 @@ FetchedResultsController is a collection of subclasses of `NSFetchedResultsContr
 
 ####Configuring 
 
-```bash
+```objc
 - (FRCTableViewFetchedResultsController *)fetchedResultsController
 {
     if (!_fetchedResultsController)
@@ -42,6 +42,25 @@ FetchedResultsController is a collection of subclasses of `NSFetchedResultsContr
                                                                                              cacheName:nil];
         
         _fetchedResultsController.tableView = self.tableView;
+        
+        [_fetchedResultsController performFetch:nil];
+    }
+    
+    return _fetchedResultsController;
+}
+```
+
+```objc
+- (FRCCollectionViewFetchedResultsController *)fetchedResultsController
+{
+    if (!_fetchedResultsController)
+    {
+        _fetchedResultsController = [[FRCCollectionViewFetchedResultsController alloc] initWithFetchRequest:self.fetchRequest
+                                                                                  managedObjectContext:[CDSServiceManager sharedInstance].managedObjectContext
+                                                                                    sectionNameKeyPath:nil
+                                                                                             cacheName:nil];
+        
+        _fetchedResultsController.collectionView = self.collectionView;
         
         [_fetchedResultsController performFetch:nil];
     }
