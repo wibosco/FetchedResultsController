@@ -14,6 +14,7 @@
 #import <CoreDataServices/NSManagedObjectContext+CDSCount.h>
 #import <CoreDataServices/NSEntityDescription+CDSEntityDescription.h>
 #import <PureLayout/PureLayout.h>
+#import <FetchedResultsController/FRCTableViewFetchedResultsController.h>
 
 #import "FREUser.h"
 #import "FREUserTableViewCell.h"
@@ -22,9 +23,13 @@
 
 @property (nonatomic, strong) UITableView *tableView;
 
-@property (nonatomic, strong) NSArray *users;
-
 @property (nonatomic, strong) UIBarButtonItem *insertUserBarButtonItem;
+
+@property (nonatomic, strong) FRCTableViewFetchedResultsController *fetchedResultsController;
+
+@property (nonatomic, strong) NSFetchRequest *fetchRequest;
+
+@property (nonatomic, strong) NSArray *sortDescriptorsForFetchRequest;
 
 - (void)insertButtonPressed:(UIBarButtonItem *)sender;
 
@@ -74,9 +79,9 @@
 {
     if (!_insertUserBarButtonItem)
     {
-       _insertUserBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-                                                                                target:self
-                                                                                action:@selector(insertButtonPressed:)];
+        _insertUserBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                                                                 target:self
+                                                                                 action:@selector(insertButtonPressed:)];
     }
     
     return _insertUserBarButtonItem;
@@ -84,25 +89,49 @@
 
 #pragma mark - Users
 
-- (NSArray *)users
+- (FRCTableViewFetchedResultsController *)fetchedResultsController
 {
-    if (!_users)
+    if (!_fetchedResultsController)
     {
-        NSSortDescriptor *ageSort = [NSSortDescriptor sortDescriptorWithKey:@"age"
-                                                                  ascending:YES];
+        _fetchedResultsController = [[FRCTableViewFetchedResultsController alloc] initWithFetchRequest:self.fetchRequest
+                                                                                  managedObjectContext:[CDSServiceManager sharedInstance].managedObjectContext
+                                                                                    sectionNameKeyPath:nil
+                                                                                             cacheName:nil];
         
-        _users = [[CDSServiceManager sharedInstance].managedObjectContext cds_retrieveEntriesForEntityClass:[FREUser class]
-                                                                                            sortDescriptors:@[ageSort]];
+        _fetchedResultsController.tableView = self.tableView;
+        
+        [_fetchedResultsController performFetch:nil];
     }
     
-    return _users;
+    return _fetchedResultsController;
+}
+
+- (NSFetchRequest *)fetchRequest
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    
+    fetchRequest.entity = [NSEntityDescription cds_entityForClass:[FREUser class]
+                                           inManagedObjectContext:[CDSServiceManager sharedInstance].managedObjectContext];
+    
+    fetchRequest.sortDescriptors = self.sortDescriptorsForFetchRequest;
+    
+    return fetchRequest;
+}
+
+- (NSArray *)sortDescriptorsForFetchRequest
+{
+    NSSortDescriptor *ageSort = [NSSortDescriptor sortDescriptorWithKey:@"age"
+                                                              ascending:YES];
+    
+    
+    return @[ageSort];
 }
 
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.users.count;
+    return self.fetchedResultsController.fetchedObjects.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -110,7 +139,7 @@
     FREUserTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[FREUserTableViewCell reuseIdentifier]
                                                                  forIndexPath:indexPath];
     
-    FREUser *user = self.users[indexPath.row];
+    FREUser *user = self.fetchedResultsController.fetchedObjects[indexPath.row];
     
     cell.nameLabel.text = user.name;
     cell.ageLabel.text = [NSString stringWithFormat:@"%@", user.age];
@@ -120,25 +149,16 @@
     return cell;
 }
 
-- (nullable NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    return [NSString stringWithFormat:@"Total Users: %@", @([[CDSServiceManager sharedInstance].managedObjectContext cds_retrieveEntriesCountForEntityClass:[FREUser class]])];
-}
-
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    FREUser *user = self.users[indexPath.row];
+    FREUser *user = self.fetchedResultsController.fetchedObjects[indexPath.row];
     
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"userID MATCHES %@", user.userID]; //I could have passed the user itself but I wanted to demostrate a predicate being used
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"userID MATCHES %@", user.userID];
     
     [[CDSServiceManager sharedInstance].managedObjectContext cds_deleteEntriesForEntityClass:[FREUser class]
                                                                                    predicate:predicate];
-    
-    self.users = nil;
-    
-    [self.tableView reloadData];
 }
 
 #pragma mark - Insert
@@ -149,12 +169,10 @@
                                                        inManagedObjectContext:[CDSServiceManager sharedInstance].managedObjectContext];
     
     user.userID = [NSUUID UUID].UUIDString;
-    user.name = [NSString stringWithFormat:@"Example %@", @(self.users.count)];
+    user.name = [NSString stringWithFormat:@"Example %@", @(self.fetchedResultsController.fetchedObjects.count)];
     user.age = @(arc4random_uniform(102));
-    
-    self.users = nil;
-    
-    [self.tableView reloadData];
+
+    [[CDSServiceManager sharedInstance].managedObjectContext save:nil];
 }
 
 @end
