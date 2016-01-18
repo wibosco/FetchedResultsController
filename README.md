@@ -6,6 +6,8 @@ A FetchedResultsController implementation that abstracts out the boilerplate for
 
 ##Installation via [Cocoapods](https://cocoapods.org/)
 
+#### Podfile
+
 To integrate FetchedResultsController into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
 ```ruby
