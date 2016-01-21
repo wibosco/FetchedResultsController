@@ -1,1 +1,0 @@
-../../../FetchedResultsController/FetchedResultsController/CollectionView/FRCCollectionViewFetchedResultsController.h
