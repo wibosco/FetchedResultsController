@@ -36,7 +36,6 @@
     if (self)
     {
         self.delegate = self;
-        self.shouldUpdateSections = YES;
     }
     
     return self;
@@ -55,7 +54,6 @@
     if (self)
     {
         self.delegate = self;
-        self.shouldUpdateSections = YES;
     }
     
     return self;
@@ -90,11 +88,8 @@
   didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo
            atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type
 {
-    if (self.shouldUpdateSections)
-    {
-        NSMutableIndexSet *changeSet = self.sectionChanges[@(type)];
-        [changeSet addIndex:sectionIndex + self.sectionOffset];
-    }
+    NSMutableIndexSet *changeSet = self.sectionChanges[@(type)];
+    [changeSet addIndex:sectionIndex + self.sectionOffset];
 }
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject

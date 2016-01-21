@@ -32,7 +32,6 @@
     if (self)
     {
         self.delegate = self;
-        self.shouldUpdateSections = YES;
     }
     
     return self;
@@ -107,26 +106,23 @@
            atIndex:(NSUInteger)sectionIndex
      forChangeType:(NSFetchedResultsChangeType)type
 {
-    if (self.shouldUpdateSections)
+    switch(type)
     {
-        switch(type)
+        case NSFetchedResultsChangeInsert:
         {
-            case NSFetchedResultsChangeInsert:
-            {
-                [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex]
-                              withRowAnimation:self.insertSectionAnimation];
-                break;
-            }
-            case NSFetchedResultsChangeDelete:
-            {
-                [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex]
-                              withRowAnimation:self.deleteSectionAnimation];
-                break;
-            }
-            default:
-            {
-                break;
-            }
+            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex]
+                          withRowAnimation:self.insertSectionAnimation];
+            break;
+        }
+        case NSFetchedResultsChangeDelete:
+        {
+            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex]
+                          withRowAnimation:self.deleteSectionAnimation];
+            break;
+        }
+        default:
+        {
+            break;
         }
     }
 }
@@ -134,15 +130,7 @@
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
     // The fetch controller has sent all current change notifications, so tell the table view to process all updates.
-    if (self.disableAnimations)
-    {
-        [UIView setAnimationsEnabled:NO];
-    }
     [self.tableView endUpdates];
-    if (self.disableAnimations)
-    {
-        [UIView setAnimationsEnabled:YES];
-    }
     
     if ([self.dataDelegate respondsToSelector:@selector(didChangeWithInsertObjectsAtIndexPaths:updatedIndexPaths:)])
     {

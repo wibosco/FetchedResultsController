@@ -40,9 +40,4 @@
  */
 @property (nonatomic, assign) NSUInteger sectionOffset;
 
-/**
- Specifies if the fetch result controller should update it's sections.
- */
-@property (nonatomic, assign) BOOL shouldUpdateSections;
-
 @end

@@ -6,8 +6,6 @@ A FetchedResultsController implementation that abstracts out the boilerplate for
 
 ##Installation via [Cocoapods](https://cocoapods.org/)
 
-#### Podfile
-
 To integrate FetchedResultsController into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
 ```ruby
@@ -71,6 +69,16 @@ FetchedResultsController is a collection of subclasses of `NSFetchedResultsContr
     return _fetchedResultsController;
 }
 ```
+
+#####Mixing different datasources
+
+At times you want to mix data from your FRC with data from another source inside the same `UITableView` or `UICollectionView` to support this FetchedResultsController has a `sectionOffset` property that will allow you to insert multiple non-FRC'd section into your view. It's important to note that this only works for sections that come before (lower index) the FRC section.
+
+```objc
+_fetchedResultsController.sectionOffset = 2;
+```
+
+In the above example we add two sections before the FRC section.
 
 FetchedResultsController comes with an [example project](https://github.com/wibosco/FetchedResultsController/tree/master/Example/iOS%20Example) to provide more details than listed above.
 

@@ -28,7 +28,7 @@
 
 /**
  Informational call for when the FRC updates.
-
+ 
  @param indexPath - indexPath to the updated cell.
  */
 - (void)didUpdateItemAtIndexPath:(NSIndexPath *)indexPath;
@@ -36,11 +36,6 @@
 @end
 
 @interface FRCTableViewFetchedResultsController : NSFetchedResultsController <NSFetchedResultsControllerDelegate>
-
-/**
- Specifies if the fetch result controller should update it's sections.
- */
-@property (nonatomic , assign) BOOL shouldUpdateSections;
 
 /**
  Table view for the fetch result controller to update.
@@ -83,11 +78,6 @@
  Animation effect on a delete section action.
  */
 @property (nonatomic, assign) UITableViewRowAnimation deleteSectionAnimation;
-
-/**
- Tells the fetch request controller to disable all animations when updating table view. Default is NO.
- */
-@property (nonatomic, assign) BOOL disableAnimations;
 
 /**
  Tells the fetch request controller to clear it's cache.
