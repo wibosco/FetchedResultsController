@@ -4,7 +4,7 @@
 
 A FetchedResultsController implementation that abstracts out the boilerplate for both UITableView and UICollectionView
 
-##Installation via [Cocoapods](https://cocoapods.org/)
+##Installation via [CocoaPods](https://cocoapods.org/)
 
 To integrate FetchedResultsController into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
