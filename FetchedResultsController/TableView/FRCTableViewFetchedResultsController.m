@@ -134,7 +134,8 @@
     
     if ([self.dataDelegate respondsToSelector:@selector(didChangeWithInsertObjectsAtIndexPaths:updatedIndexPaths:)])
     {
-        [self.insertedIndexPaths sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+        [self.insertedIndexPaths sortUsingComparator:^NSComparisonResult(id obj1, id obj2)
+        {
             NSIndexPath *indexPath1 = (NSIndexPath *)obj1;
             NSIndexPath *indexPath2 = (NSIndexPath *)obj2;
             
