@@ -2,7 +2,7 @@
 [![License](https://img.shields.io/cocoapods/l/FetchedResultsController.svg?style=flat)](http://cocoapods.org/pods/FetchedResultsController)
 [![Platform](https://img.shields.io/cocoapods/p/FetchedResultsController.svg?style=flat)](http://cocoapods.org/pods/FetchedResultsController)
 
-A FetchedResultsController implementation that abstracts out the boilerplate for both UITableView and UICollectionView
+A FetchedResultsController implementation that abstracts out the boilerplate for UITableView
 
 ##Installation via [CocoaPods](https://cocoapods.org/)
 
@@ -25,7 +25,7 @@ $ pod install
 
 ##Usage
 
-FetchedResultsController is a collection of subclasses of `NSFetchedResultsController` that conform to their own `NSFetchedResultsControllerDelegate` delegate and implement these methods to handle the most common use case. As this implementation uses it's own delegate we have had to introduce a different suite of delegate callbacks: `FRCTableViewFetchedResultsControllerDataDelegate` and `FRCCollectionViewFetchedResultsControllerDataDelegate`.
+FetchedResultsController is a collection of subclasses of `NSFetchedResultsController` that conform to their own `NSFetchedResultsControllerDelegate` delegate and implement these methods to handle the most common use case. As this implementation uses it's own delegate we have had to introduce a different suite of delegate callbacks: `FRCTableViewFetchedResultsControllerDataDelegate`.
 
 ####Configuring 
 
@@ -49,30 +49,10 @@ FetchedResultsController is a collection of subclasses of `NSFetchedResultsContr
     return _fetchedResultsController;
 }
 ```
-#####Collectionview 
-
-```objc
-- (FRCCollectionViewFetchedResultsController *)fetchedResultsController
-{
-    if (!_fetchedResultsController)
-    {
-        _fetchedResultsController = [[FRCCollectionViewFetchedResultsController alloc] initWithFetchRequest:self.fetchRequest
-                                                                                  managedObjectContext:[CDSServiceManager sharedInstance].managedObjectContext
-                                                                                    sectionNameKeyPath:nil
-                                                                                             cacheName:nil];
-        
-        _fetchedResultsController.collectionView = self.collectionView;
-        
-        [_fetchedResultsController performFetch:nil];
-    }
-    
-    return _fetchedResultsController;
-}
-```
 
 #####Mixing different datasources
 
-At times you want to mix data from your FRC with data from another source inside the same `UITableView` or `UICollectionView` to support this FetchedResultsController has a `sectionOffset` property that will allow you to insert multiple non-FRC'd sections into your view. It's important to note that this only works for sections that come before (lower index) the FRC section.
+At times you want to mix data from your FRC with data from another source inside the same `UITableView` to support this FetchedResultsController has a `sectionOffset` property that will allow you to insert multiple non-FRC'd sections into your view. It's important to note that this only works for sections that come before (lower index) the FRC section.
 
 ```objc
 _fetchedResultsController.sectionOffset = 2;
