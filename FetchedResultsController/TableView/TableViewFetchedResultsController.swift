@@ -12,7 +12,8 @@ import CoreData
 /**
  Delegate for when the tableview's content changes in the FRC.
  */
-@objc public protocol TableViewFetchedResultsControllerDelegate: NSObjectProtocol {
+@objc (FRCTableViewFetchedResultsControllerDelegate)
+public protocol TableViewFetchedResultsControllerDelegate: NSObjectProtocol {
     
     /**
      Informational call for when the FRC updates.
@@ -38,7 +39,8 @@ import CoreData
 /**
  A tableview supported subclass of `NSFetchedResultsController`.
  */
-@objc public class TableViewFetchedResultsController: NSFetchedResultsController, NSFetchedResultsControllerDelegate {
+@objc(FRCTableViewFetchedResultsController)
+public class TableViewFetchedResultsController: NSFetchedResultsController, NSFetchedResultsControllerDelegate {
     
     //MARK: Accessors
     
