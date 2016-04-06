@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 --- 
 
+## [2.0.3](https://github.com/wibosco/FetchedResultsController/releases/tag/2.0.3)
+
+* Updated delegate method to be optional
+
 ## [2.0.2](https://github.com/wibosco/FetchedResultsController/releases/tag/2.0.2)
 
 * Added property for disabling tableview animations
