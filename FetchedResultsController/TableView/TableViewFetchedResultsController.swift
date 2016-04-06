@@ -17,7 +17,7 @@ import CoreData
     /**
      Informational call for when the FRC updates.
      */
-    func didUpdateContent()
+    optional func didUpdateContent()
     
     /**
      Informational call for when the FRC updates.
@@ -174,7 +174,7 @@ import CoreData
         
         self.dataDelegate?.didChangeIndexPaths?(self.insertedIndexPaths!, updatedIndexPaths: self.updatedIndexPaths!)
         
-        self.dataDelegate?.didUpdateContent()
+        self.dataDelegate?.didUpdateContent?()
     }
     
     /**
