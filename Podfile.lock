@@ -1,0 +1,13 @@
+PODS:
+  - ConvenientFileManager (2.0.5)
+  - CoreDataServices (2.0.3):
+    - ConvenientFileManager (~> 2.0)
+
+DEPENDENCIES:
+  - CoreDataServices
+
+SPEC CHECKSUMS:
+  ConvenientFileManager: 0c064c7694fc82bd1b7d51126ac0aaf4cede888c
+  CoreDataServices: c67d3d9f98c557ae60e9f525b9cd69c4d45188fd
+
+COCOAPODS: 0.39.0
