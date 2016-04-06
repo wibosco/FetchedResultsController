@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 --- 
 
+## [2.0.2](https://github.com/wibosco/FetchedResultsController/releases/tag/2.0.2)
+
+* Added property for disabling tableview animations
+
 ## [2.0.1](https://github.com/wibosco/FetchedResultsController/releases/tag/2.0.1)
 
 * Updated the example to use the Swift version of `FetchedResultsController`
