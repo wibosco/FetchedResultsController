@@ -85,6 +85,11 @@ import CoreData
     public var deleteSectionAnimation: UITableViewRowAnimation = UITableViewRowAnimation.Automatic
     
     /**
+     Disables all animations when updating table view.
+     */
+    public var disableAnimations = false
+    
+    /**
      A collection of inserted index paths for that change event that will be passed through the `dataDelegate`
      */
     private var insertedIndexPaths: Array<NSIndexPath>?
@@ -125,6 +130,8 @@ import CoreData
             newIndexPathWithOffset = NSIndexPath(forRow: (newIndexPath?.row)!, inSection: ((newIndexPath?.section)! + self.sectionOffset))
         }
         
+        /*-----------------*/
+        
         switch type {
         case NSFetchedResultsChangeType.Insert:
             self.tableView?.insertRowsAtIndexPaths([newIndexPathWithOffset!], withRowAnimation: self.insertRowAnimation)
@@ -152,8 +159,18 @@ import CoreData
     }
     
     public func controllerDidChangeContent(controller: NSFetchedResultsController) {
+        if self.disableAnimations {
+            UIView.setAnimationsEnabled(false)
+        }
+        
         // The fetch controller has sent all current change notifications, so tell the table view to process all updates.
         self.tableView?.endUpdates()
+        
+        if self.disableAnimations {
+            UIView.setAnimationsEnabled(true)
+        }
+        
+        /*-----------------*/
         
         self.dataDelegate?.didChangeIndexPaths?(self.insertedIndexPaths!, updatedIndexPaths: self.updatedIndexPaths!)
         
