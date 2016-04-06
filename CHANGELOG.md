@@ -4,7 +4,11 @@ All notable changes to this project will be documented in this file.
 
 --- 
 
- [2.0.0](https://github.com/wibosco/FetchedResultsController/releases/tag/2.0.0)
+## [2.0.1](https://github.com/wibosco/FetchedResultsController/releases/tag/2.0.1)
+
+* Updated the example to use the Swift version of `FetchedResultsController`
+
+## [2.0.0](https://github.com/wibosco/FetchedResultsController/releases/tag/2.0.0)
 
 * Converted project over to using Swift
 

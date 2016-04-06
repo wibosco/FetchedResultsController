@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "FetchedResultsController"
-  s.version      = "2.0.0"
+  s.version      = "2.0.1"
   s.summary      = "A FetchedResultsController implementation that abstracts out the boilerplate for both UITableView."
 
   s.homepage     = "http://www.williamboles.me"
