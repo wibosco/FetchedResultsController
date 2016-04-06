@@ -8,11 +8,8 @@
 
 #import "FRETableViewController.h"
 
-#import <CoreDataServices/CDSServiceManager.h>
-#import <CoreDataServices/NSManagedObjectContext+CDSRetrieval.h>
-#import <CoreDataServices/NSManagedObjectContext+CDSDelete.h>
-#import <CoreDataServices/NSEntityDescription+CDSEntityDescription.h>
-#import <FetchedResultsController/FRCTableViewFetchedResultsController.h>
+#import <FetchedResultsController/FetchedResultsController-Swift.h>
+#import <CoreDataServices/CoreDataServices-Swift.h>
 
 #import "FREUser.h"
 #import "FREUserTableViewCell.h"
@@ -23,7 +20,7 @@
 
 @property (nonatomic, strong) UIBarButtonItem *insertUserBarButtonItem;
 
-@property (nonatomic, strong) FRCTableViewFetchedResultsController *fetchedResultsController;
+@property (nonatomic, strong) TableViewFetchedResultsController *fetchedResultsController;
 
 @property (nonatomic, strong) NSFetchRequest *fetchRequest;
 
@@ -87,14 +84,14 @@
 
 #pragma mark - Users
 
-- (FRCTableViewFetchedResultsController *)fetchedResultsController
+- (TableViewFetchedResultsController *)fetchedResultsController
 {
     if (!_fetchedResultsController)
     {
-        _fetchedResultsController = [[FRCTableViewFetchedResultsController alloc] initWithFetchRequest:self.fetchRequest
-                                                                                  managedObjectContext:[CDSServiceManager sharedInstance].managedObjectContext
-                                                                                    sectionNameKeyPath:nil
-                                                                                             cacheName:nil];
+        _fetchedResultsController = [[TableViewFetchedResultsController alloc] initWithFetchRequest:self.fetchRequest
+                                                                               managedObjectContext:[ServiceManager sharedInstance].mainManagedObjectContext
+                                                                                 sectionNameKeyPath:nil
+                                                                                          cacheName:nil];
         
         _fetchedResultsController.tableView = self.tableView;
         
@@ -109,7 +106,7 @@
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     
     fetchRequest.entity = [NSEntityDescription cds_entityForClass:[FREUser class]
-                                           inManagedObjectContext:[CDSServiceManager sharedInstance].managedObjectContext];
+                                           inManagedObjectContext:[ServiceManager sharedInstance].mainManagedObjectContext];
     
     fetchRequest.sortDescriptors = self.sortDescriptorsForFetchRequest;
     
@@ -155,22 +152,22 @@
     
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"userID MATCHES %@", user.userID];
     
-    [[CDSServiceManager sharedInstance].managedObjectContext cds_deleteEntriesForEntityClass:[FREUser class]
-                                                                                   predicate:predicate];
+    [[ServiceManager sharedInstance].mainManagedObjectContext cds_deleteEntriesForEntityClass:[FREUser class]
+                                                                                    predicate:predicate];
 }
 
 #pragma mark - Insert
 
 - (void)insertButtonPressed:(UIBarButtonItem *)sender
 {
-    FREUser *user = [NSEntityDescription cds_insertNewObjectForEntityForClass:[FREUser class]
-                                                       inManagedObjectContext:[CDSServiceManager sharedInstance].managedObjectContext];
+    FREUser *user = (FREUser *)[NSEntityDescription cds_insertNewObjectForEntityForClass:[FREUser class]
+                                                                  inManagedObjectContext:[ServiceManager sharedInstance].mainManagedObjectContext];
     
     user.userID = [NSUUID UUID].UUIDString;
     user.name = [NSString stringWithFormat:@"Table %@", @(self.fetchedResultsController.fetchedObjects.count)];
     user.age = @(arc4random_uniform(102));
-
-    [[CDSServiceManager sharedInstance].managedObjectContext save:nil];
+    
+    [[ServiceManager sharedInstance] saveMainManagedObjectContext];
 }
 
 @end

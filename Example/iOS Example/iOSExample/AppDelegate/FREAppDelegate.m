@@ -8,18 +8,15 @@
 
 #import "FREAppDelegate.h"
 
-#import <CoreDataServices/CDSServiceManager.h>
+#import <CoreDataServices/CoreDataServices-Swift.h>
 
 #import "FRETableViewController.h"
-#import "FRECollectionViewController.h"
 
 @interface FREAppDelegate ()
 
 @property (nonatomic, strong) UINavigationController *tableNavigationController;
-@property (nonatomic, strong) UINavigationController *collectionNavigationController;
 
 @property (nonatomic, strong) FRETableViewController *tableViewController;
-@property (nonatomic, strong) FRECollectionViewController *collectionViewController;
 
 @end
 
@@ -29,7 +26,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [[CDSServiceManager sharedInstance] setupModelURLWithModelName:@"Model"];
+    [[ServiceManager sharedInstance] setupModelURLWithModelName:@"Model"];
     
     /*-------------------*/
     
@@ -45,7 +42,7 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    [[CDSServiceManager sharedInstance] saveManagedObjectContext];
+    [[ServiceManager sharedInstance] saveMainManagedObjectContext];
 }
 
 #pragma mark - Window
@@ -70,7 +67,7 @@
         _tabBarController = [[UITabBarController alloc] init];
         
         [_tabBarController addChildViewController:self.tableNavigationController];
-        [_tabBarController addChildViewController:self.collectionNavigationController];
+
     }
     
     return _tabBarController;
@@ -92,22 +89,6 @@
     return _tableNavigationController;
 }
 
-- (UINavigationController *)collectionNavigationController
-{
-    if (!_collectionNavigationController)
-    {
-        _collectionNavigationController = [[UINavigationController alloc] initWithRootViewController:self.collectionViewController];
-        
-        UITabBarItem *collectionNavigationControllerItem = [[UITabBarItem alloc] initWithTitle:@"Collection"
-                                                                                         image:[UIImage imageNamed:@"second"]
-                                                                                           tag:1];
-        
-        [_collectionNavigationController setTabBarItem:collectionNavigationControllerItem];
-    }
-    
-    return _collectionNavigationController;
-}
-
 #pragma mark - ViewController
 
 - (FRETableViewController *)tableViewController
@@ -118,16 +99,6 @@
     }
     
     return _tableViewController;
-}
-
-- (FRECollectionViewController *)collectionViewController
-{
-    if (!_collectionViewController)
-    {
-        _collectionViewController = [[FRECollectionViewController alloc] init];
-    }
-    
-    return _collectionViewController;
 }
 
 @end

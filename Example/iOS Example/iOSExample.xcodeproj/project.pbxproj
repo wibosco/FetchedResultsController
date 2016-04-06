@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2E67ACA92893CF6018F3BE96 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BA8FD3365D9ABC46AAD1959E /* libPods.a */; };
+		2DBE489BACFE39AE6D2CDE1F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A31EDAF4C98E5CAF20AE248F /* Pods.framework */; };
 		430CA3681C4D29760096C573 /* FREAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 430CA34B1C4D29760096C573 /* FREAppDelegate.m */; };
 		430CA36B1C4D29760096C573 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 430CA3531C4D29760096C573 /* Model.xcdatamodeld */; };
 		430CA36C1C4D29760096C573 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 430CA3571C4D29760096C573 /* Assets.xcassets */; };
@@ -17,8 +17,6 @@
 		430CA37B1C4D29D00096C573 /* FREUserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 430CA3791C4D29D00096C573 /* FREUserTableViewCell.m */; };
 		430CA3801C4D2A380096C573 /* FREUser+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 430CA37D1C4D2A380096C573 /* FREUser+CoreDataProperties.m */; };
 		430CA3811C4D2A380096C573 /* FREUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 430CA37F1C4D2A380096C573 /* FREUser.m */; };
-		430CA3851C4D515D0096C573 /* FRECollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 430CA3841C4D515D0096C573 /* FRECollectionViewController.m */; };
-		430CA38A1C4D55BD0096C573 /* FREUserCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 430CA3891C4D55BD0096C573 /* FREUserCollectionViewCell.m */; };
 		43C2AEA91C4D25FA003C3989 /* iOSExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 43C2AEA81C4D25FA003C3989 /* iOSExampleTests.m */; };
 /* End PBXBuildFile section */
 
@@ -49,16 +47,12 @@
 		430CA37D1C4D2A380096C573 /* FREUser+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FREUser+CoreDataProperties.m"; sourceTree = "<group>"; };
 		430CA37E1C4D2A380096C573 /* FREUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FREUser.h; sourceTree = "<group>"; };
 		430CA37F1C4D2A380096C573 /* FREUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FREUser.m; sourceTree = "<group>"; };
-		430CA3831C4D515D0096C573 /* FRECollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FRECollectionViewController.h; sourceTree = "<group>"; };
-		430CA3841C4D515D0096C573 /* FRECollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FRECollectionViewController.m; sourceTree = "<group>"; };
-		430CA3881C4D55BD0096C573 /* FREUserCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FREUserCollectionViewCell.h; sourceTree = "<group>"; };
-		430CA3891C4D55BD0096C573 /* FREUserCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FREUserCollectionViewCell.m; sourceTree = "<group>"; };
 		43C2AE881C4D25FA003C3989 /* iOSExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43C2AEA41C4D25FA003C3989 /* iOSExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		43C2AEA81C4D25FA003C3989 /* iOSExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iOSExampleTests.m; sourceTree = "<group>"; };
 		43C2AEAA1C4D25FA003C3989 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		48F4C668F5CC3EC1F59AE2B5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		BA8FD3365D9ABC46AAD1959E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A31EDAF4C98E5CAF20AE248F /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,7 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2E67ACA92893CF6018F3BE96 /* libPods.a in Frameworks */,
+				2DBE489BACFE39AE6D2CDE1F /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,7 +77,7 @@
 		21B6DE9B84A33E2B51B5D1FA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				BA8FD3365D9ABC46AAD1959E /* libPods.a */,
+				A31EDAF4C98E5CAF20AE248F /* Pods.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -162,7 +156,6 @@
 		430CA3601C4D29760096C573 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				430CA3821C4D513B0096C573 /* Collectionview */,
 				430CA3731C4D29D00096C573 /* Tableview */,
 			);
 			path = ViewControllers;
@@ -191,33 +184,6 @@
 			children = (
 				430CA3781C4D29D00096C573 /* FREUserTableViewCell.h */,
 				430CA3791C4D29D00096C573 /* FREUserTableViewCell.m */,
-			);
-			path = User;
-			sourceTree = "<group>";
-		};
-		430CA3821C4D513B0096C573 /* Collectionview */ = {
-			isa = PBXGroup;
-			children = (
-				430CA3861C4D55820096C573 /* Cells */,
-				430CA3831C4D515D0096C573 /* FRECollectionViewController.h */,
-				430CA3841C4D515D0096C573 /* FRECollectionViewController.m */,
-			);
-			path = Collectionview;
-			sourceTree = "<group>";
-		};
-		430CA3861C4D55820096C573 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				430CA3871C4D55820096C573 /* User */,
-			);
-			path = Cells;
-			sourceTree = "<group>";
-		};
-		430CA3871C4D55820096C573 /* User */ = {
-			isa = PBXGroup;
-			children = (
-				430CA3881C4D55BD0096C573 /* FREUserCollectionViewCell.h */,
-				430CA3891C4D55BD0096C573 /* FREUserCollectionViewCell.m */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -423,7 +389,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				430CA3851C4D515D0096C573 /* FRECollectionViewController.m in Sources */,
 				430CA3801C4D2A380096C573 /* FREUser+CoreDataProperties.m in Sources */,
 				430CA3701C4D29760096C573 /* main.m in Sources */,
 				430CA3681C4D29760096C573 /* FREAppDelegate.m in Sources */,
@@ -431,7 +396,6 @@
 				430CA37B1C4D29D00096C573 /* FREUserTableViewCell.m in Sources */,
 				430CA3811C4D2A380096C573 /* FREUser.m in Sources */,
 				430CA36B1C4D29760096C573 /* Model.xcdatamodeld in Sources */,
-				430CA38A1C4D55BD0096C573 /* FREUserCollectionViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
