@@ -20,7 +20,7 @@
 
 @property (nonatomic, strong) UIBarButtonItem *insertUserBarButtonItem;
 
-@property (nonatomic, strong) TableViewFetchedResultsController *fetchedResultsController;
+@property (nonatomic, strong) FRCTableViewFetchedResultsController *fetchedResultsController;
 
 @property (nonatomic, strong) NSFetchRequest *fetchRequest;
 
@@ -84,14 +84,14 @@
 
 #pragma mark - Users
 
-- (TableViewFetchedResultsController *)fetchedResultsController
+- (FRCTableViewFetchedResultsController *)fetchedResultsController
 {
     if (!_fetchedResultsController)
     {
-        _fetchedResultsController = [[TableViewFetchedResultsController alloc] initWithFetchRequest:self.fetchRequest
-                                                                               managedObjectContext:[ServiceManager sharedInstance].mainManagedObjectContext
-                                                                                 sectionNameKeyPath:nil
-                                                                                          cacheName:nil];
+        _fetchedResultsController = [[FRCTableViewFetchedResultsController alloc] initWithFetchRequest:self.fetchRequest
+                                                                                  managedObjectContext:[ServiceManager sharedInstance].mainManagedObjectContext
+                                                                                    sectionNameKeyPath:nil
+                                                                                             cacheName:nil];
         
         _fetchedResultsController.tableView = self.tableView;
         
