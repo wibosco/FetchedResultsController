@@ -62,7 +62,7 @@ public class TableViewFetchedResultsController: NSFetchedResultsController, NSFe
     public var sectionOffset = 0
     
     /**
-     Relaods table view on `NSFetchedResultsController`s delegate method controllerDidChangeContent(controller:) call. If this flag is set, TableViewFetchedResultsController will relaod tablew view's data instead of doing table view updates.
+     Reloads table view on `NSFetchedResultsController`s delegate method controllerDidChangeContent(controller:) call. If this flag is set, TableViewFetchedResultsController will reload tablew view's data instead of doing table view updates.
      */
     public var reloadTableDataOnUpdate = false
     
