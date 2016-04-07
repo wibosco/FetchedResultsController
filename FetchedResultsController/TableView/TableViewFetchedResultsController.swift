@@ -72,11 +72,6 @@ public class TableViewFetchedResultsController: NSFetchedResultsController, NSFe
     public var deleteRowAnimation: UITableViewRowAnimation = UITableViewRowAnimation.Automatic
     
     /**
-     Animation effect on a update row action.
-     */
-    public var updateRowAnimation: UITableViewRowAnimation = UITableViewRowAnimation.Automatic
-    
-    /**
      Animation effect on a insert section action.
      */
     public var insertSectionAnimation: UITableViewRowAnimation = UITableViewRowAnimation.Automatic
