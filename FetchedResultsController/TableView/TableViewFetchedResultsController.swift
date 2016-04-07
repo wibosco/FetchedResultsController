@@ -62,6 +62,11 @@ public class TableViewFetchedResultsController: NSFetchedResultsController, NSFe
     public var sectionOffset = 0
     
     /**
+     Reloads table view on `NSFetchedResultsController`s delegate method controllerDidChangeContent(controller:) call. If this flag is set, TableViewFetchedResultsController will reload tablew view's data instead of doing table view updates.
+     */
+    public var reloadTableDataOnUpdate = false
+    
+    /**
      Animation effect on a insert row action.
      */
     public var insertRowAnimation: UITableViewRowAnimation = UITableViewRowAnimation.Automatic
@@ -107,64 +112,73 @@ public class TableViewFetchedResultsController: NSFetchedResultsController, NSFe
     //MARK: NSFetchedResultsControllerDelegate
     
     public func controllerWillChangeContent(controller: NSFetchedResultsController) {
-        // The fetch controller is about to start sending change notifications, so prepare the table view for updates.
-        self.insertedIndexPaths = Array<NSIndexPath>()
-        self.updatedIndexPaths = Array<NSIndexPath>()
-        self.tableView?.beginUpdates()
+        if !reloadTableDataOnUpdate {
+            // The fetch controller is about to start sending change notifications, so prepare the table view for updates.
+            self.insertedIndexPaths = Array<NSIndexPath>()
+            self.updatedIndexPaths = Array<NSIndexPath>()
+            self.tableView?.beginUpdates()
+        }
     }
     
     public func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
-        
-        var indexPathWithOffset: NSIndexPath?
-        
-        if indexPath != nil {
-            indexPathWithOffset = NSIndexPath(forRow: (indexPath?.row)!, inSection: ((indexPath?.section)! + self.sectionOffset))
-        }
-        
-        var newIndexPathWithOffset: NSIndexPath?
-        
-        if newIndexPath != nil {
-            newIndexPathWithOffset = NSIndexPath(forRow: (newIndexPath?.row)!, inSection: ((newIndexPath?.section)! + self.sectionOffset))
-        }
-        
-        /*-----------------*/
-        
-        switch type {
-        case NSFetchedResultsChangeType.Insert:
-            self.tableView?.insertRowsAtIndexPaths([newIndexPathWithOffset!], withRowAnimation: self.insertRowAnimation)
-            self.insertedIndexPaths?.append(newIndexPathWithOffset!)
-        case NSFetchedResultsChangeType.Delete:
-            self.tableView?.deleteRowsAtIndexPaths([indexPathWithOffset!], withRowAnimation: self.deleteRowAnimation)
-        case NSFetchedResultsChangeType.Update:
-            self.updatedIndexPaths?.append(indexPathWithOffset!)
-            self.dataDelegate?.didUpdateIndexPath?(indexPathWithOffset!)
-        case NSFetchedResultsChangeType.Move:
-            self.tableView?.deleteRowsAtIndexPaths([indexPathWithOffset!], withRowAnimation: self.deleteRowAnimation)
-            self.tableView?.insertRowsAtIndexPaths([newIndexPathWithOffset!], withRowAnimation: self.insertRowAnimation)
+        if !reloadTableDataOnUpdate {
+            var indexPathWithOffset: NSIndexPath?
+            
+            if indexPath != nil {
+                indexPathWithOffset = NSIndexPath(forRow: (indexPath?.row)!, inSection: ((indexPath?.section)! + self.sectionOffset))
+            }
+            
+            var newIndexPathWithOffset: NSIndexPath?
+            
+            if newIndexPath != nil {
+                newIndexPathWithOffset = NSIndexPath(forRow: (newIndexPath?.row)!, inSection: ((newIndexPath?.section)! + self.sectionOffset))
+            }
+            
+            /*-----------------*/
+            
+            switch type {
+            case NSFetchedResultsChangeType.Insert:
+                self.tableView?.insertRowsAtIndexPaths([newIndexPathWithOffset!], withRowAnimation: self.insertRowAnimation)
+                self.insertedIndexPaths?.append(newIndexPathWithOffset!)
+            case NSFetchedResultsChangeType.Delete:
+                self.tableView?.deleteRowsAtIndexPaths([indexPathWithOffset!], withRowAnimation: self.deleteRowAnimation)
+            case NSFetchedResultsChangeType.Update:
+                self.updatedIndexPaths?.append(indexPathWithOffset!)
+                self.dataDelegate?.didUpdateIndexPath?(indexPathWithOffset!)
+            case NSFetchedResultsChangeType.Move:
+                self.tableView?.deleteRowsAtIndexPaths([indexPathWithOffset!], withRowAnimation: self.deleteRowAnimation)
+                self.tableView?.insertRowsAtIndexPaths([newIndexPathWithOffset!], withRowAnimation: self.insertRowAnimation)
+            }
         }
     }
     
     public func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
-        switch type {
-        case NSFetchedResultsChangeType.Insert:
-            self.tableView?.insertSections(NSIndexSet(index: sectionIndex), withRowAnimation: self.insertSectionAnimation)
-        case NSFetchedResultsChangeType.Delete:
-            self.tableView?.deleteSections(NSIndexSet(index: sectionIndex), withRowAnimation: self.deleteRowAnimation)
-        default:
-            break
+        if !reloadTableDataOnUpdate {
+            switch type {
+            case NSFetchedResultsChangeType.Insert:
+                self.tableView?.insertSections(NSIndexSet(index: sectionIndex), withRowAnimation: self.insertSectionAnimation)
+            case NSFetchedResultsChangeType.Delete:
+                self.tableView?.deleteSections(NSIndexSet(index: sectionIndex), withRowAnimation: self.deleteRowAnimation)
+            default:
+                break
+            }
         }
     }
     
     public func controllerDidChangeContent(controller: NSFetchedResultsController) {
-        if self.disableAnimations {
-            UIView.setAnimationsEnabled(false)
-        }
-        
-        // The fetch controller has sent all current change notifications, so tell the table view to process all updates.
-        self.tableView?.endUpdates()
-        
-        if self.disableAnimations {
-            UIView.setAnimationsEnabled(true)
+        if reloadTableDataOnUpdate {
+            self.tableView?.reloadData()
+        } else {
+            if self.disableAnimations {
+                UIView.setAnimationsEnabled(false)
+            }
+            
+            // The fetch controller has sent all current change notifications, so tell the table view to process all updates.
+            self.tableView?.endUpdates()
+            
+            if self.disableAnimations {
+                UIView.setAnimationsEnabled(true)
+            }
         }
         
         /*-----------------*/
