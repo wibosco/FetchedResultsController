@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 --- 
 
+## [2.0.6](https://github.com/wibosco/FetchedResultsController/releases/tag/2.0.6)
+
+* Added new property - `reloadTableDataOnUpdate`
+
 ## [2.0.5](https://github.com/wibosco/FetchedResultsController/releases/tag/2.0.5)
 
 * Removed unused update animation property - `updateRowAnimation`
