@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 --- 
 
+## [2.0.7](https://github.com/wibosco/FetchedResultsController/releases/tag/2.0.7)
+
+* Declared `init` method as public
+
 ## [2.0.6](https://github.com/wibosco/FetchedResultsController/releases/tag/2.0.6)
 
 * Added new property - `reloadTableDataOnUpdate`
