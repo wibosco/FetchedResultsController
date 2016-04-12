@@ -103,7 +103,7 @@ public class TableViewFetchedResultsController: NSFetchedResultsController, NSFe
     
     //MARK: Init
     
-    override init(fetchRequest: NSFetchRequest, managedObjectContext context: NSManagedObjectContext, sectionNameKeyPath: String?, cacheName name: String?) {
+    public override init(fetchRequest: NSFetchRequest, managedObjectContext context: NSManagedObjectContext, sectionNameKeyPath: String?, cacheName name: String?) {
         super.init(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: sectionNameKeyPath, cacheName: name)
         
         self.delegate = self
