@@ -1,6 +1,8 @@
+[![Build Status](https://travis-ci.org/wibosco/FetchedResultsController.svg)](https://travis-ci.org/wibosco/FetchedResultsController)
 [![Version](https://img.shields.io/cocoapods/v/FetchedResultsController.svg?style=flat)](http://cocoapods.org/pods/FetchedResultsController)
 [![License](https://img.shields.io/cocoapods/l/FetchedResultsController.svg?style=flat)](http://cocoapods.org/pods/FetchedResultsController)
 [![Platform](https://img.shields.io/cocoapods/p/FetchedResultsController.svg?style=flat)](http://cocoapods.org/pods/FetchedResultsController)
+[![CocoaPods](https://img.shields.io/cocoapods/metrics/doc-percent/FetchedResultsController.svg)](http://cocoapods.org/pods/FetchedResultsController)
 
 A FetchedResultsController implementation that abstracts out the boilerplate for UITableView
 
