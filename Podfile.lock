@@ -1,14 +1,14 @@
 PODS:
-  - ConvenientFileManager (2.0.5)
-  - CoreDataServices (2.0.3):
+  - ConvenientFileManager (2.0.7)
+  - CoreDataServices (2.0.6):
     - ConvenientFileManager (~> 2.0)
 
 DEPENDENCIES:
   - CoreDataServices
 
 SPEC CHECKSUMS:
-  ConvenientFileManager: 0c064c7694fc82bd1b7d51126ac0aaf4cede888c
-  CoreDataServices: c67d3d9f98c557ae60e9f525b9cd69c4d45188fd
+  ConvenientFileManager: fbe505538cff2822268d451e6c5644d5651d93d2
+  CoreDataServices: 2e5547400800d78218975abc8c094e69d6726b4f
 
 PODFILE CHECKSUM: 2294442c8983db7c10be833eacd1f634e684f305
 

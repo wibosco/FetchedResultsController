@@ -18,9 +18,9 @@ class TableViewFetchedResultsControllerTests: XCTestCase {
         get {
             if _tableViewFetchedResultsController == nil {
                 let fetchRequest = NSFetchRequest.fetchRequest(Test.self)
-                fetchRequest!.sortDescriptors = [NSSortDescriptor(key: "testID", ascending: true)]
+                fetchRequest.sortDescriptors = [NSSortDescriptor(key: "testID", ascending: true)]
                 
-                _tableViewFetchedResultsController = TableViewFetchedResultsController(fetchRequest: fetchRequest!, managedObjectContext: ServiceManager.sharedInstance.mainManagedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+                _tableViewFetchedResultsController = TableViewFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: ServiceManager.sharedInstance.mainManagedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
             }
             
             return _tableViewFetchedResultsController!
