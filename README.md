@@ -6,7 +6,7 @@
 
 A FetchedResultsController implementation that abstracts out the boilerplate for UITableView
 
-##Installation via [CocoaPods](https://cocoapods.org/)
+## Installation via [CocoaPods](https://cocoapods.org/)
 
 To integrate FetchedResultsController into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
@@ -25,13 +25,13 @@ $ pod install
 
 > CocoaPods 0.39.0+ is required to build FetchedResultsController.
 
-##Usage
+## Usage
 
 FetchedResultsController is a collection of subclasses of `NSFetchedResultsController` that conform to their own `NSFetchedResultsControllerDelegate` delegate and implement these methods to handle the most common use case. As this implementation uses it's own delegate we have had to introduce a different suite of delegate callbacks: `FRCTableViewFetchedResultsControllerDataDelegate`.
 
-####Configuring 
+#### Configuring 
 
-#####Tableview 
+##### Tableview 
 
 ```objc
 - (FRCTableViewFetchedResultsController *)fetchedResultsController
@@ -52,7 +52,7 @@ FetchedResultsController is a collection of subclasses of `NSFetchedResultsContr
 }
 ```
 
-#####Mixing different datasources
+##### Mixing different datasources
 
 At times you want to mix data from your FRC with data from another source inside the same `UITableView` to support this FetchedResultsController has a `sectionOffset` property that will allow you to insert multiple non-FRC'd sections into your view. It's important to note that this only works for sections that come before (lower index) the FRC section.
 
@@ -66,7 +66,7 @@ In the above example we add two sections before the FRC section.
 
 > FetchedResultsController uses [modules](http://useyourloaf.com/blog/modules-and-precompiled-headers.html) for importing/using frameworks - you will need to enable this in your project.
 
-##Found an issue?
+## Found an issue?
 
 Please open a [new Issue here](https://github.com/wibosco/FetchedResultsController/issues/new) if you run into a problem specific to FetchedResultsController, have a feature request, or want to share a comment. Note that general FetchedResultsController/Core Data questions should be asked on [Stack Overflow](http://stackoverflow.com).
 
